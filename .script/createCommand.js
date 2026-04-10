@@ -19,6 +19,11 @@ module.exports = {
     async execute(interaction, client) {
 
         
+    },
+
+    async autocomplete(interaction, client) {
+
+
     }
 };
 `;

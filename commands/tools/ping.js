@@ -19,5 +19,10 @@ module.exports = {
             .setColor(0x00FF00);
 
         await interaction.reply({ embeds: [embed], flags: 'Ephemeral' });
+    },
+
+    async autocomplete(interaction, client) {
+
+
     }
 }
