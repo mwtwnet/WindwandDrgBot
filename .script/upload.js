@@ -1,7 +1,7 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
-const ZIP_DIR = path.join(__dirname, 'zips');
+const ZIP_DIR = path.join(__dirname, '..', 'zips');
 const UPLOAD_URL = 'https://tmpfiles.org/api/v1/upload';
 
 async function getLatestZipFile(dir) {

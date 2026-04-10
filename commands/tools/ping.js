@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
 const logger = require('../../function/log');
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
 
     /**
      * @param {import('discord.js').ChatInputCommandInteraction} interaction
-     * @param {import('discord.js').Client & {rcon: import('rcon-client').Rcon}} client
+     * @param {import('discord.js').Client} client
      */
 
     async execute(interaction, client) {
@@ -20,5 +20,4 @@ module.exports = {
 
         await interaction.reply({ embeds: [embed], flags: 'Ephemeral' });
     }
-
 }

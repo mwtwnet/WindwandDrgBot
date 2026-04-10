@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
 
-const OUTPUT_DIR = path.join(__dirname, 'zips');
+const OUTPUT_DIR = path.join(__dirname, '..', 'zips');
 
 const FILES = [
     'index.js',
