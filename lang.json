@@ -1,0 +1,56 @@
+{
+    "Review": {
+        "ZoneI": {
+            "Questions": {
+                "Id": "你的 Minecraft ID",
+                "Age": "你的年齡：請填國小、國中、高中、其他以上",
+                "Playtime": "你的 Minecraft 遊玩時數",
+                "Category": "分享最常玩的遊戲類型",
+                "Server": "分享你玩過的伺服器",
+                "OtherGames": "分享其他也有在玩的遊戲"
+            }
+        },
+        "ZoneII": {
+            "Questions": {
+                "ImpactToPlayer": "Minecraft 對你有什麼影響？",
+                "ImpactToSociality": "在你看來，Minecraft 對社交性有什麼影響？",
+                "IdealCommunity": "延續上題，你心目中理想的 Minecraft 社群是什麼樣子？",
+                "TeachUs": "在你看來，Minecraft 能教會我們什麼？",
+                "Experience": "請簡短分享你在 Minecraft 的經驗，建議字數 50 字以上。(如審核通過將公開此資訊)",
+                "AdditionalInfo": "其他補充資訊"
+            }
+        },
+        "ZoneIII": {
+            "Questions": {
+                "ModUsage": {
+                    "Title": "是否使用過以下 Mod",
+                    "Mods": [
+                        "Tweakroo",
+                        "MiniHUD",
+                        "Litematica",
+                        "Item Scroller",
+                        "Freecam"
+                    ]
+                },
+                "UnreasonableSituation": "若遇到不合理的狀況，且無法自行修復時你會怎麼做？",
+                "MissingBlueprintItems": "如果發現缺少藍圖中的物品，你會怎麼做？",
+                "TakingNonPublicItems": "再拿取非公開物資時，你會做甚麼？",
+                "ProjectPreparation": "若有一項正在計畫的工程，你應該如何準備以及開始？",
+                "ClearUnderstanding": "你是否能夠清楚知道自己在做什麼，而不是盲目使用藍圖？"
+            }
+        },
+        "ZoneIV": {
+            "Category": {
+                "GameMechanics": "遊戲機制：生產型系統、儲存與物流系統、生物與 AI 機制、時序與控制系統、機器檢修、原始碼等",
+                "BuildingAndArt": "建築美觀：地形、指令應用、建築模組、方塊應用、3D建模",
+                "Workers": "麵包人：你會玩就好",
+                "TechnicalOperations": "維運與編程技術：直接二階聊聊"
+            }
+        },
+        "ZoneV": {
+            "Questions": {
+                "Honesty": "所有資訊皆無 AI 參與並屬實？"
+            }
+        }
+    }
+}

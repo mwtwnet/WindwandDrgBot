@@ -8,6 +8,7 @@ const PROJECT_DIR = join(import.meta.dirname, '..');
 const FILES = [
     'index.js',
     'config.json',
+    'lang.json',
     'package.json',
     'prisma.config.ts',
     '.env'

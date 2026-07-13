@@ -1,0 +1,27 @@
+{
+    "AdminRoleId": "1465817353886630214",
+    "Review": {
+        "PassScore": 70,
+        "ZoneI": {
+            "SectionWeight": 0
+        },
+        "ZoneII": {
+            "SectionWeight": 50
+        },
+        "ZoneIII": {
+            "SectionWeight": 20
+        },
+        "ZoneIV": {
+            "SectionWeight": 20,
+            "QuestionTotal": 10,
+            "QuestionDistribution": {
+                "Hard": 2,
+                "Medium": 3,
+                "Easy": 5
+            }
+        },
+        "ZoneV": {
+            "SectionWeight": 10
+        }
+    }
+}
