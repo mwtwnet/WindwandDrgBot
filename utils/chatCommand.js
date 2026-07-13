@@ -1,6 +1,10 @@
 import { Events } from 'discord.js';
 import { drgApplySet } from './staticMessage/drg-apply.js';
 
+import config from '#root/config.json';
+
+const { Role } = config;
+
 export default {
     name: Events.MessageCreate,
 
@@ -26,7 +30,8 @@ export default {
 
         switch (cmd) {
             case 'drg.apply':
-                if(arg.first === 'set') drgApplySet(message);
+                if(!message.member?.roles.cache.some(role => role.id === Role.AdminRoleId)) return;
+                if(arg.first === 'set') await drgApplySet(message);
                 // someFunction();
                 return;
             default:

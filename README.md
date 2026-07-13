@@ -154,6 +154,7 @@ Files under `trigger/<category>/` handle component interactions. A trigger expor
 
 ## Supporting code
 
+- Use the native Node.js `#root/*` import alias for modules below the project root (for example, `#root/function/json.js`).
 - `function/` contains shared stateless helpers for logging, JSON configuration, time, UUIDs, and size formatting.
 - `config.json` contains non-secret application settings such as `AdminRoleId`, scores, weights, and question distribution.
 - `lang.json` contains user-facing question labels and category descriptions.
