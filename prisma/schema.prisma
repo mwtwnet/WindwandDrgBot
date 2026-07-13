@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum RespondType {
+  MULTIPLE_CHOICE
+  OPTION
+  SHORT_ANSWER
+  PARAGRAPH
+}
+
+enum QuestionCategory {
+  GAMEMECHANIC
+  BUILDING
+}
+
+model Questions {
+  id         Int          @id @default(autoincrement())
+  type       RespondType
+  category   QuestionCategory
+  difficulty Int
+  question   String
+  attachment String?
+  options    Options[]
+}
+
+model Options {
+  id         Int       @id @default(autoincrement())
+  option     String
+  questionId Int
+  question   Questions @relation(fields: [questionId], references: [id])
+}
+
+model Player {
+  id   Int    @id @default(autoincrement())
+  name String
+}

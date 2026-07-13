@@ -10,3 +10,4 @@ package-lock.json
 /prisma/migrations
 
 .script/.*.json
+/generated/prisma

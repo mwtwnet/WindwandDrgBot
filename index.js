@@ -134,7 +134,7 @@ async function prismaGenerate() {
 
 async function init() {
 	// Generate Prisma Client
-	// await prismaGenerate();
+	await prismaGenerate();
 
 	// Config Check
 	const isConfigValid = await configCheck();
@@ -142,7 +142,6 @@ async function init() {
 		logger.error('Initialization aborted due to config errors.');
 		process.exit(1);
 	}
-
 
 	logger.line()
 

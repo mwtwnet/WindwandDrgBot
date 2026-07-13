@@ -17,17 +17,29 @@
    DATABASE_PORT=3306
    ```
 
-3. Migration to setup database tables
+3. Create or update database tables directly from the Prisma schema
    ```
-   npx prisma migrate dev --name init
+   npx prisma db push
    ```
 
-   Or if using a exit database run
+   If the database already contains tables and you want to update
+   `schema.prisma` from those tables instead, run
    ```
    npx prisma db pull
    ```
 
-4. Generate client
+   To create migration files during development, run
+   ```
+   npx prisma migrate dev --name init
+   ```
+
+   `prisma migrate dev` creates a temporary shadow database. The configured
+   database user must have permission to create databases, or Prisma must be
+   configured with a dedicated shadow database. Use `prisma db push` when you
+   only need to apply the schema to an existing database and do not need
+   migration files.
+
+4. Generate the Prisma client
    ```
    npx prisma generate
    ```
@@ -143,7 +155,8 @@ Files under `trigger/<category>/` handle component interactions. A trigger expor
 ## Supporting code
 
 - `function/` contains shared stateless helpers for logging, JSON configuration, time, UUIDs, and size formatting.
-- `config.json` contains non-secret application configuration such as `AdminRoleId`.
+- `config.json` contains non-secret application settings such as `AdminRoleId`, scores, weights, and question distribution.
+- `lang.json` contains user-facing question labels and category descriptions.
 - `.env` contains Discord credentials and IDs; `.env.example` documents required environment variables.
 - `.script/newCmd.js` and `.script/newTrigger.js` are interactive scaffolding tools exposed as `npm run newcmd` and `npm run newtri`.
 - `.script/zip.js` and `.script/upload.js` support packaging and upload workflows.
