@@ -2,6 +2,7 @@
   "name": "disbase-v4",
   "version": "1.0.1",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "zip": "node .script/zip.js",

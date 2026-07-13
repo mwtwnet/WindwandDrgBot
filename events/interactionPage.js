@@ -1,6 +1,7 @@
 import { Events, EmbedBuilder } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
+import { pathToFileURL } from 'url';
 import logger from '../function/log.js';
 
 export default {
@@ -35,7 +36,7 @@ export default {
 			const actionFiles = readdirSync(actionPath).filter(file => file.endsWith('.js'));
 			for (const file of actionFiles) {
 				const filePath = join(actionPath, file);
-				const { default: action } = await import(new URL(filePath, import.meta.url).href);
+				const { default: action } = await import(pathToFileURL(filePath).href);
 				const admin = file.includes('[admin]') ? true : false;
 
 				Action[action.customId] = action;

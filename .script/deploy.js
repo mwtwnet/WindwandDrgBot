@@ -1,12 +1,13 @@
 import { REST, Routes } from 'discord.js';
 import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const commands = [];
-const foldersPath = join(__dirname, '..', 'commands');
+const foldersPath = join(import.meta.dirname, '..', 'commands');
 const commandFolders = readdirSync(foldersPath);
 
 const subCommandsFolderRegex = /^\[.*\]$/
@@ -21,7 +22,7 @@ for (const folder of commandFolders) {
 	for (const file of commandFiles) {
 
 		const filePath = join(commandsPath, file);
-		const { default: command } = await import(new URL(filePath, import.meta.url).href);
+		const { default: command } = await import(pathToFileURL(filePath).href);
 
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
@@ -37,12 +38,12 @@ for (const folder of commandFolders) {
 		const subGroupFiles = subFiles.filter(file => statSync(join(commandsPath, folder, file)).isDirectory() && subCommandsFolderRegex.test(file));
 
 		const rootCommandPath = join(commandsPath, folder, 'index.js')
-		const { default: rootCommandData } = await import(new URL(rootCommandPath, import.meta.url).href);
+		const { default: rootCommandData } = await import(pathToFileURL(rootCommandPath).href);
 
 		//Process Subcommand
 		for (const subFile of subCommandFiles) {
 			const filePath = join(commandsPath, folder, subFile);
-			const { default: command } = await import(new URL(filePath, import.meta.url).href);
+			const { default: command } = await import(pathToFileURL(filePath).href);
 
 			if ('data' in command && 'execute' in command) {
 				rootCommandData.data.addSubcommand(command.data);
@@ -54,12 +55,12 @@ for (const folder of commandFolders) {
 		//Process Subcommand Group
 		for (const subGroup of subGroupFiles) {
 			const subGroupFilePath = join(commandsPath, folder, subGroup, 'index.js')
-			const { default: subGroupData } = await import(new URL(subGroupFilePath, import.meta.url).href);
+			const { default: subGroupData } = await import(pathToFileURL(subGroupFilePath).href);
 			const subGroupCommandFiles = readdirSync(join(commandsPath, folder, subGroup)).filter(file => file !== 'index.js' && file.endsWith('.js'));
 
 			for (const subGroupCommandFile of subGroupCommandFiles) {
 				const filePath = join(commandsPath, folder, subGroup, subGroupCommandFile);
-				const { default: command } = await import(new URL(filePath, import.meta.url).href);
+				const { default: command } = await import(pathToFileURL(filePath).href);
 				if ('data' in command && 'execute' in command) {
 					subGroupData.data.addSubcommand(command.data);
 				} else {

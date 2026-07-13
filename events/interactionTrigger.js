@@ -1,6 +1,7 @@
 import { Events, EmbedBuilder } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
+import { pathToFileURL } from 'url';
 import logger from '../function/log.js';
 import MyClient from '../utils/myClient.js';
 
@@ -28,7 +29,7 @@ export default {
 			const triggerFiles = readdirSync(triggerPath).filter(file => file.endsWith('.js'));
 			for (const file of triggerFiles) {
 				const filePath = join(triggerPath, file);
-				const { default: trigger } = await import(new URL(filePath, import.meta.url).href);
+				const { default: trigger } = await import(pathToFileURL(filePath).href);
 				const admin = file.includes('[admin]') ? true : false;
 
 				Trigger[trigger.customId] = trigger;

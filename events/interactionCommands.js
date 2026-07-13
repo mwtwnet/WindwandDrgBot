@@ -1,10 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 import { Events, EmbedBuilder, GuildMemberRoleManager } from 'discord.js';
-import { AdminRoleId } from '../config.json';
+// @ts-ignore
+import config from '../config.json' with { type: 'json' };
 import MyClient from '../utils/myClient.js';
 import logger from '../function/log.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const { AdminRoleId } = config;
 
 const Command = LoadCommandFolder();
 
@@ -85,7 +90,7 @@ async function LoadCommandFolder() {
 
 		for (const file of commandFiles) {
 			const filePath = path.join(commandPath, file);
-			const { default: command } = await import(new URL(filePath, import.meta.url).href);
+			const { default: command } = await import(pathToFileURL(filePath).href);
 
 			command.folder = folder;
 			commands[command.data.name] = command;
@@ -94,7 +99,7 @@ async function LoadCommandFolder() {
 		for (const subCommandFolder of subCommandFiles) {
 			const subCommandPath = path.join(commandPath, subCommandFolder);
 			const subCommandIndexPath = path.join(subCommandPath, 'index.js');
-			const { default: subCommand } = await import(new URL(subCommandIndexPath, import.meta.url).href);
+			const { default: subCommand } = await import(pathToFileURL(subCommandIndexPath).href);
 
 			subCommand.folder = folder;
 			commands[subCommand.data.name] = subCommand;

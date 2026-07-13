@@ -1,7 +1,7 @@
 import { readdir, stat, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const ZIP_DIR = join(__dirname, '..', 'zips');
+const ZIP_DIR = join(import.meta.dirname, '..', 'zips');
 const UPLOAD_URL = 'https://tmpfiles.org/api/v1/upload';
 
 async function getLatestZipFile(dir) {

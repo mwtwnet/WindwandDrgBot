@@ -3,6 +3,7 @@ import { join } from 'path';
 import archiver from 'archiver';
 
 const OUTPUT_DIR = join(import.meta.dirname, '..', 'zips');
+const PROJECT_DIR = join(import.meta.dirname, '..');
 
 const FILES = [
     'index.js',
@@ -49,7 +50,7 @@ archive.on('error', (err) => {
 archive.pipe(output);
 
 for (const file of FILES) {
-    const filePath = join(__dirname, file);
+    const filePath = join(PROJECT_DIR, file);
     if (existsSync(filePath)) {
         archive.file(filePath, { name: file });
     } else {
@@ -58,7 +59,7 @@ for (const file of FILES) {
 }
 
 for (const folder of FOLDERS) {
-    const folderPath = join(__dirname, folder);
+    const folderPath = join(PROJECT_DIR, folder);
     if (existsSync(folderPath)) {
         archive.directory(folderPath, folder);
     } else {

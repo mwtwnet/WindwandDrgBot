@@ -4,11 +4,14 @@ import { execSync } from 'child_process';
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
 import dotenv from 'dotenv';
 import logger from './function/log.js';
 import MyClient from './utils/myClient.js';
 
 dotenv.config();
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const client = new MyClient();
 
@@ -68,7 +71,7 @@ async function subCommandMismatchChecker() {
 			const expectedName = path.basename(entry.name, '.js');
 
 			try {
-				const { default: commandModule } = await import(new URL(entryPath, import.meta.url).href);
+				const { default: commandModule } = await import(pathToFileURL(entryPath).href);
 				const actualName = commandModule?.data?.name;
 
 				if (typeof actualName !== 'string') {
@@ -172,7 +175,7 @@ async function init() {
 		let loadstring = "";
 		for (const file of commandFiles) {
 			const filePath = path.join(commandsPath, file);
-			const { default: command } = await import(new URL(filePath, import.meta.url).href);
+			const { default: command } = await import(pathToFileURL(filePath).href);
 
 			if ('data' in command && 'execute' in command) {
 				command.admin = folder.toLowerCase() === 'admin' ? true : false;
@@ -187,7 +190,7 @@ async function init() {
 		for (const subCommand of subCommandFiles) {
 			const subCommandPath = path.join(commandsPath, subCommand);
 			const subCommandFilePath = path.join(subCommandPath, 'index.js')
-			const { default: subCommandIndex } = await import(new URL(subCommandFilePath, import.meta.url).href);
+			const { default: subCommandIndex } = await import(pathToFileURL(subCommandFilePath).href);
 
 			if ('data' in subCommandIndex && 'execute' in subCommandIndex) {
 				subCommandIndex.admin = folder.toLowerCase() === 'admin' ? true : false;
@@ -214,7 +217,7 @@ async function init() {
 		let loadstring = "";
 		for (const file of actionFiles) {
 			const filePath = path.join(actionPath, file);
-			const { default: action } = await import(new URL(filePath, import.meta.url).href);
+			const { default: action } = await import(pathToFileURL(filePath).href);
 
 			if ('customId' in action && 'execute' in action) {
 				buttonActions[action.customId] = action;
@@ -240,7 +243,7 @@ async function init() {
 	let eventcount = 0;
 	for (const file of eventFiles) {
 		const filePath = path.join(eventsPath, file);
-		const { default: event } = await import(new URL(filePath, import.meta.url).href);
+		const { default: event } = await import(pathToFileURL(filePath).href);
 
 		const eventType = event.once ? '[\x1B[32mOnce\x1B[0m]' : '[\x1B[34mOn\x1B[0m]  ';
 		loadingMessage[0].push(`${eventType.padEnd(10)} ${file}`);
@@ -258,7 +261,7 @@ async function init() {
 
 	for (const file of utilFiles) {
 		const filePath = path.join(utilPath, file);
-		const { default: event } = await import(new URL(filePath, import.meta.url).href);
+		const { default: event } = await import(pathToFileURL(filePath).href);
 
 		const eventType = event.once ? '[\x1B[32mOnce\x1B[0m]' : '[\x1B[34mOn\x1B[0m]';
 		loadingMessage[1].push(`${eventType.padEnd(10)} ${file}`);

@@ -9,7 +9,7 @@ const commandModes = [
     { name: 'subgroupcommand', label: 'subcommandgroup' }
 ];
 
-const stateFilePath = join(__dirname, '.newcmd-state.json');
+const stateFilePath = join(import.meta.dirname, '.newcmd-state.json');
 
 const color = {
     reset: '\x1b[0m',
@@ -236,7 +236,7 @@ function writeFileWithCheck(filePath, content) {
 }
 
 function listRootCommands(parentFolder) {
-    const commandsPath = join(__dirname, '..', 'commands', parentFolder);
+    const commandsPath = join(import.meta.dirname, '..', 'commands', parentFolder);
     if (!existsSync(commandsPath)) {
         return [];
     }
@@ -248,7 +248,7 @@ function listRootCommands(parentFolder) {
 }
 
 function listSubcommandGroups(parentFolder, rootCommandName) {
-    const rootFolderPath = join(__dirname, '..', 'commands', parentFolder, getBracketFolderName(rootCommandName));
+    const rootFolderPath = join(import.meta.dirname, '..', 'commands', parentFolder, getBracketFolderName(rootCommandName));
     if (!existsSync(rootFolderPath)) {
         return [];
     }
@@ -260,7 +260,7 @@ function listSubcommandGroups(parentFolder, rootCommandName) {
 }
 
 function listNormalCommandFolders() {
-    const commandsPath = join(__dirname, '..', 'commands');
+    const commandsPath = join(import.meta.dirname, '..', 'commands');
     if (!existsSync(commandsPath)) {
         return [];
     }
@@ -775,7 +775,7 @@ async function createCommand() {
     });
     preview.command = commandName;
 
-    const outputPath = join(__dirname, '..', 'commands', commandFolder, `${commandName}.js`);
+    const outputPath = join(import.meta.dirname, '..', 'commands', commandFolder, `${commandName}.js`);
     if (!ensureFileDoesNotExist(outputPath)) {
         return;
     }
@@ -828,7 +828,7 @@ async function createSubcommand() {
         const rootCommandName = rootSelection.value;
         preview.root = rootCommandName;
 
-        const commandFolderPath = join(__dirname, '..', 'commands', parentFolder, getBracketFolderName(rootCommandName));
+        const commandFolderPath = join(import.meta.dirname, '..', 'commands', parentFolder, getBracketFolderName(rootCommandName));
         const rootIndexPath = join(commandFolderPath, 'index.js');
         const rootExists = existsSync(rootIndexPath);
 
@@ -915,7 +915,7 @@ async function createSubgroupCommand() {
             const rootCommandName = rootSelection.value;
             preview.root = rootCommandName;
 
-            const commandFolderPath = join(__dirname, '..', 'commands', parentFolder, getBracketFolderName(rootCommandName));
+            const commandFolderPath = join(import.meta.dirname, '..', 'commands', parentFolder, getBracketFolderName(rootCommandName));
             const rootIndexPath = join(commandFolderPath, 'index.js');
             const rootExists = existsSync(rootIndexPath);
 

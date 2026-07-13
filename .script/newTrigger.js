@@ -8,7 +8,7 @@ const triggerTypes = [
     { name: 'select', label: 'select' }
 ];
 
-const stateFilePath = join(__dirname, '.newtri-state.json');
+const stateFilePath = join(import.meta.dirname, '.newtri-state.json');
 const triggerNamePattern = /^[a-z0-9_-]{1,64}$/;
 
 const color = {
@@ -151,7 +151,7 @@ function validateTriggerName(value) {
 }
 
 function listTriggerFolders() {
-    const triggerPath = join(__dirname, '..', 'trigger');
+    const triggerPath = join(import.meta.dirname, '..', 'trigger');
     if (!existsSync(triggerPath)) {
         return [];
     }
@@ -267,7 +267,7 @@ async function main() {
     }))).trim();
     preview.customId = customId;
 
-    const triggerFolderPath = join(__dirname, '..', 'trigger', folder);
+    const triggerFolderPath = join(import.meta.dirname, '..', 'trigger', folder);
     const outputPath = join(triggerFolderPath, fileName);
 
     if (existsSync(outputPath)) {
