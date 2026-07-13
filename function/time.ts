@@ -3,8 +3,7 @@
  * @param {Date | null} [date=null]
  * @returns {string}
  */
-export function formatDate(date = null) {
-    if (!date) date = new Date();
+export function formatDate(date: Date = new Date()): string {
 
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -21,7 +20,7 @@ export function formatDate(date = null) {
  * @param {string} data
  * @returns {string}
  */
-export function uptimeFormat(data) {
+export function uptimeFormat(data: string): string {
     const match = data.match(/(\d+)d(\d+)h(\d+)m(\d+)s/);
     if (!match) return '無法解析';
     const days = match[1] ? parseInt(match[1], 10) : 0;
@@ -35,8 +34,7 @@ export function uptimeFormat(data) {
  * @param {number | null} [date=null]
  * @returns {number}
  */
-export function unixTimeStamp(date = null) {
-    if (!date) date = Date.now();
+export function unixTimeStamp(date: number = Date.now()): number {
     return Math.floor(date / 1000);
 };
 
@@ -45,6 +43,6 @@ export function unixTimeStamp(date = null) {
  * @param {number} millsec
  * @returns {Promise<void>}
  */
-export async function sleep(millsec) {
+export async function sleep(millsec: number): Promise<void> {
     return new Promise(sov => setTimeout(sov, millsec));
 };

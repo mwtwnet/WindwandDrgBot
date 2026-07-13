@@ -1,3 +1,8 @@
+nodeLinker: hoisted
+packageImportMethod: copy
+confirmModulesPurge: false
+
 allowBuilds:
   '@prisma/engines': false
+  esbuild: true
   prisma: false

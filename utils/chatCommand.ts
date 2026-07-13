@@ -1,7 +1,9 @@
 import { Events } from 'discord.js';
+import type { Message } from 'discord.js';
 import { drgApplySet } from './staticMessage/drg-apply.js';
+import type MyClient from './myClient.js';
 
-import config from '#root/config.json';
+import config from '#root/config.json' with { type: 'json' };
 
 const { Role } = config;
 
@@ -13,7 +15,7 @@ export default {
      * @param {import('discord.js').Client} client 
      */
 
-    async execute(message, client) {
+    async execute(message: Message, _client: MyClient) {
         // Admin can call command like [<command> <args>]
         const commandRegex = /^\[.*\]$/;
 
@@ -30,7 +32,7 @@ export default {
 
         switch (cmd) {
             case 'drg.apply':
-                if(!message.member?.roles.cache.some(role => role.id === Role.AdminRoleId)) return;
+                if (!message.member?.roles.cache.some(role => role.id === Role.AdminRoleId)) return;
                 if(arg.first === 'set') await drgApplySet(message);
                 // someFunction();
                 return;
@@ -39,4 +41,4 @@ export default {
         }
 
     }
-}
+};

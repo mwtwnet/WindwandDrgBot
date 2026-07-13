@@ -3,7 +3,7 @@
  * @param {string[]} format
  * @returns {string}
  */
-export function uuid(format) {
+export function uuid(format: string[]): string {
     const availChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let uuid = '';
     for (let i = 0; i < format.length; i++) {
@@ -22,10 +22,10 @@ export function uuid(format) {
  * @param {number} bytes
  * @returns {string}
  */
-export function sizeFormat(bytes) {
+export function sizeFormat(bytes: number): string {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     if (bytes === 0) return '0 Byte';
 
     const i = parseInt(String(Math.floor(Math.log(bytes) / Math.log(1024))), 10);
-    return `${(bytes / (1024 ** i)).toFixed(2)} ${sizes[i]}`;
+    return `${(bytes / (1024 ** i)).toFixed(2)} ${sizes[i] ?? 'Bytes'}`;
 };
