@@ -1,7 +1,7 @@
 import { EmbedBuilder, Events, MessageFlags } from 'discord.js';
 import type { Interaction } from 'discord.js';
-import logger from '@function/log.js';
-import type MyClient from '@utils/myClient.js';
+import logger from '@function/log';
+import type MyClient from '@utils/myClient';
 
 export default {
     name: Events.InteractionCreate,

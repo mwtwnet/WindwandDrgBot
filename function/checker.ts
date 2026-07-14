@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import logger from './log.js';
-import { isModuleFile, moduleExtension, moduleIndexFile } from './modules.js';
+import logger from '@function/log';
+import { isModuleFile, moduleExtension, moduleIndexFile } from '@function/modules';
 
 interface CommandModule {
     data?: {

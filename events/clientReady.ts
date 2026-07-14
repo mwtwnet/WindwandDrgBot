@@ -1,7 +1,7 @@
 import { Events } from 'discord.js';
 import type { Client } from 'discord.js';
 import { color } from 'console-log-colors';
-import logger from '@function/log.js';
+import logger from '@function/log';
 
 export default {
     name: Events.ClientReady,

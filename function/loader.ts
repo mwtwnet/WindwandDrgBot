@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { color } from 'console-log-colors';
-import logger from './log.js';
-import { isModuleFile, moduleIndexFile } from './modules.js';
-import type { BotCommand, BotEvent, BotTrigger, LoadedTrigger } from '@framework/framework.js';
-import type MyClient from '@utils/myClient.js';
+import logger from '@function/log';
+import { isModuleFile, moduleIndexFile } from '@function/modules';
+import type { BotCommand, BotEvent, BotTrigger, LoadedTrigger } from '@framework/framework';
+import type MyClient from '@utils/myClient';
 
 type EventDirectory = 'events' | 'utils';
 

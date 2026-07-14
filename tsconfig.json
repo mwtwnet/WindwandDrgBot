@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "target": "ES2023",
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
         "rootDir": ".",
         "outDir": "dist",
         "strict": true,
@@ -38,5 +38,9 @@
     "exclude": [
         "dist",
         "node_modules"
-    ]
+    ],
+    "tsc-alias": {
+        "resolveFullPaths": true,
+        "resolveFullExtension": ".js"
+    }
 }

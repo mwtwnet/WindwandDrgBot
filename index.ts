@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
-import { configCheck } from '@function/checker.js';
-import { loadCommands, loadEvents, loadTriggers } from '@function/loader.js';
-import logger from '@function/log.js';
-import MyClient from '@utils/myClient.js';
+import { configCheck } from '@function/checker';
+import { loadCommands, loadEvents, loadTriggers } from '@function/loader';
+import logger from '@function/log';
+import MyClient from '@utils/myClient';
 
 dotenv.config();
 

@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 import type { BaseMessageOptions, Message } from 'discord.js';
 
-import { sleep } from '@function/time.js';
+import { sleep } from '@function/time';
 import lang from '@root/lang.json' with { type: 'json' };
 import config from '@root/config.json' with { type: 'json' };
 

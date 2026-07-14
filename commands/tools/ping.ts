@@ -1,6 +1,6 @@
 import { EmbedBuilder, MessageFlags, SlashCommandBuilder } from 'discord.js';
 import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
-import type MyClient from '@utils/myClient.js';
+import type MyClient from '@utils/myClient';
 
 export default {
     data: new SlashCommandBuilder()

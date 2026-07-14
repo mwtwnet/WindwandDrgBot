@@ -1,5 +1,5 @@
 import { Client, Collection, GatewayIntentBits } from "discord.js";
-import type { BotCommand, LoadedTrigger } from '@framework/framework.js';
+import type { BotCommand, LoadedTrigger } from '@framework/framework';
 
 export default class MyClient extends Client {
     commands: Collection<string, BotCommand>;

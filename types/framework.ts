@@ -7,7 +7,7 @@ import type {
     SlashCommandBuilder,
     SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js';
-import type MyClient from '@utils/myClient.js';
+import type MyClient from '@utils/myClient';
 
 export interface BotCommand {
     data: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;

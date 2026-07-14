@@ -1,7 +1,7 @@
 import { Events } from 'discord.js';
 import type { Message } from 'discord.js';
-import { drgApplySet } from './staticMessage/drg-apply.js';
-import type MyClient from './myClient.js';
+import { drgApplySet } from '@utils/apply/message';
+import type MyClient from '@utils/myClient';
 
 import config from '@root/config.json' with { type: 'json' };
 
