@@ -1,6 +1,7 @@
 .env
 
 /node_modules
+/.pnpm-store
 package-lock.json
 
 /zips
@@ -10,3 +11,4 @@ package-lock.json
 
 .script/.*.json
 /generated/prisma
+/dist

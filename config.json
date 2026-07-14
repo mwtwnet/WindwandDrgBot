@@ -1,6 +1,16 @@
 {
-    "AdminRoleId": "1465817353886630214",
-    "Review": {
+    "Role": {
+        "AdminRoleId": "1465817353886630214"
+    },
+    "Channel": {
+        "ApplyChannelId": "1465817353886630214",
+        "ApplyLogChannelId": "1465817353886630214"
+    },
+    "Message": {
+        "ApplyMessageId": "1465817353886630214"
+    },
+
+    "Apply": {
         "PassScore": 70,
         "ZoneI": {
             "SectionWeight": 0

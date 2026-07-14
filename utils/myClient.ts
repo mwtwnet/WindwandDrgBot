@@ -1,6 +1,10 @@
 import { Client, Collection, GatewayIntentBits } from "discord.js";
+import type { BotCommand, LoadedTrigger } from '@framework/framework.js';
 
 export default class MyClient extends Client {
+    commands: Collection<string, BotCommand>;
+    triggers: Collection<string, LoadedTrigger>;
+
     constructor() {
         super({
             intents: [
@@ -14,6 +18,7 @@ export default class MyClient extends Client {
             ],
         });
 
-        this.commands = new Collection();
+        this.commands = new Collection<string, BotCommand>();
+        this.triggers = new Collection<string, LoadedTrigger>();
     }
 }

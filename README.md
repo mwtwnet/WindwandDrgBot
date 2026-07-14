@@ -1,5 +1,15 @@
 # Discord Bot Template
 
+This project is written in TypeScript and builds runnable Node.js modules into `dist/`.
+
+```bash
+pnpm typecheck
+pnpm build
+pnpm start
+```
+
+Use `pnpm dev` for watch mode while developing.
+
 # Mysql Prisma install
 
 1. Install Prisma
@@ -67,7 +77,7 @@ This repository is a Discord.js bot template with a small filesystem-based frame
 ## Runtime overview
 
 ```text
-index.js
+index.ts
   -> validate command filenames
   -> create MyClient and its command Collection
   -> discover top-level commands and root command folders
@@ -76,12 +86,12 @@ index.js
   -> log in to Discord
 
 Discord InteractionCreate
-  -> interactionCommands.js for slash commands and autocomplete
-  -> interactionPage.js for custom IDs beginning with page:<number>_
-  -> interactionTrigger.js for ordinary buttons and modal submissions
+  -> interactionCommands.ts for slash commands and autocomplete
+  -> interactionPage.ts for custom IDs beginning with page:<number>_
+  -> interactionTrigger.ts for ordinary buttons and modal submissions
 ```
 
-`utils/myClient.js` defines the Discord client and gateway intents. `index.js` is the composition root: it constructs this client, fills `client.commands`, attaches event listeners, installs process-level error logging, and calls `client.login()`.
+`utils/myClient.ts` defines the Discord client and gateway intents. `index.ts` is the composition root: it constructs this client, fills `client.commands`, attaches event listeners, installs process-level error logging, and calls `client.login()`.
 
 Several files can listen to the same Discord event. Each listener must therefore check the interaction type or custom-ID pattern immediately and return when the event does not belong to it.
 
@@ -92,40 +102,40 @@ The first folder below `commands/` is a category, not part of the Discord slash-
 ```text
 commands/
   tools/                       category
-    ping.js                    /ping
+    ping.ts                    /ping
     [server]/                  /server root command
-      index.js                 root schema and leaf dispatcher
-      status.js                /server status
+      index.ts                 root schema and leaf dispatcher
+      status.ts                /server status
       [member]/                subcommand group
-        index.js               group schema
-        inspect.js             /server member inspect
+        index.ts               group schema
+        inspect.ts             /server member inspect
   admin/                       protected command category
-    admin-ping.js              /admin-ping
+    admin-ping.ts              /admin-ping
 ```
 
 ### Standalone commands
 
-A direct `.js` child of a category is a complete slash command. Its default export must contain:
+A direct `.ts` child of a category is a complete slash command. Its default export must contain:
 
 - `data`: a `SlashCommandBuilder` whose name is globally unique.
 - `execute(interaction, client)`: the command handler.
 - `autocomplete(interaction, client)`: optional in practice, but required if the command defines autocomplete options.
 
-At startup, `index.js` imports the module and stores it in `client.commands` under `command.data.name`.
+At startup, `index.ts` imports the module and stores it in `client.commands` under `command.data.name`.
 
 ### Root commands and subcommands
 
-A bracketed folder such as `[server]` represents one root slash command. Its `index.js` owns the root `SlashCommandBuilder` and is the only module registered in `client.commands` at runtime.
+A bracketed folder such as `[server]` represents one root slash command. Its `index.ts` owns the root `SlashCommandBuilder` and is the only module registered in `client.commands` at runtime.
 
-Leaf files next to the root index use `SlashCommandSubcommandBuilder`. Their filename must equal `data.name`, because the root handler selects a leaf with `options.getSubcommand()` and dynamically imports `./<subcommand>.js`.
+Leaf files next to the root index use `SlashCommandSubcommandBuilder`. Their filename must equal `data.name`. TypeScript source uses `.ts`; compiled dynamic imports resolve the emitted `.js` module.
 
-A nested bracketed folder such as `[member]` represents a Discord subcommand group. Its `index.js` owns a `SlashCommandSubcommandGroupBuilder`; leaf files inside it own `SlashCommandSubcommandBuilder` objects. Runtime dispatch becomes `./[<group>]/<subcommand>.js`.
+A nested bracketed folder such as `[member]` represents a Discord subcommand group. Its `index.ts` owns a `SlashCommandSubcommandGroupBuilder`; leaf files inside it own `SlashCommandSubcommandBuilder` objects.
 
-The root `index.js` delegates both `execute` and `autocomplete` to the selected leaf. Business logic belongs in the leaf, while the root index should remain routing-only.
+The root `index.ts` delegates both `execute` and `autocomplete` to the selected leaf. Business logic belongs in the leaf, while the root index should remain routing-only.
 
 ### Deployment versus execution
 
-`npm run dp` runs `.script/deploy.js`. This is the schema-building phase:
+`pnpm dp` runs `.script/deploy.ts` through `tsx`. This is the schema-building phase:
 
 1. Standalone command builders are serialized directly.
 2. For every bracketed root, leaf builders are added with `addSubcommand()`.
@@ -138,7 +148,7 @@ At startup, `subCommandMismatchChecker()` imports non-index leaf files under bra
 
 ## Events and component triggers
 
-Every `.js` file directly inside `events/` and `utils/` is treated as an event module with this shape:
+Every `.ts` file directly inside `events/` is treated as an event module with this shape:
 
 ```js
 export default {
@@ -148,16 +158,17 @@ export default {
 };
 ```
 
-Use `events/` for Discord lifecycle and interaction routing. Although `utils/chatCommand.js` currently acts as a `MessageCreate` listener, new non-event helpers should not be placed in `utils/`, because the startup loader assumes every file there is an event module.
+Use `events/` for Discord lifecycle and interaction routing. `utils/chatCommand.ts` currently acts as a `MessageCreate` listener; other utility modules are ignored unless they export a valid event shape.
 
-Files under `trigger/<category>/` handle component interactions. A trigger exports a unique `customId` and `execute(interaction, client)`. `interactionTrigger.js` routes exact IDs. `interactionPage.js` additionally recognizes IDs shaped like `page:<number>_<id>`, converts them to `page_<id>`, and calls the trigger with the parsed page number as a third argument.
+Files under `trigger/<category>/` handle component interactions. A trigger exports a unique `customId` and `execute(interaction, client)`. `interactionTrigger.ts` routes exact IDs. `interactionPage.ts` additionally recognizes IDs shaped like `page:<number>_<id>`, converts them to `page_<id>`, and calls the trigger with the parsed page number as a third argument.
 
 ## Supporting code
 
+- Use the TypeScript `@root/*` import alias for modules below the project root (for example, `@root/function/json.js`). The build rewrites aliases to relative Node.js imports.
 - `function/` contains shared stateless helpers for logging, JSON configuration, time, UUIDs, and size formatting.
-- `config.json` contains non-secret application settings such as `AdminRoleId`, scores, weights, and question distribution.
+- `config.json` contains non-secret application settings such as role/channel IDs, scores, weights, and question distribution.
 - `lang.json` contains user-facing question labels and category descriptions.
 - `.env` contains Discord credentials and IDs; `.env.example` documents required environment variables.
-- `.script/newCmd.js` and `.script/newTrigger.js` are interactive scaffolding tools exposed as `npm run newcmd` and `npm run newtri`.
-- `.script/zip.js` and `.script/upload.js` support packaging and upload workflows.
+- `.script/newCmd.ts` and `.script/newTrigger.ts` are typed interactive scaffolding tools exposed as `pnpm newcmd` and `pnpm newtri`.
+- `.script/zip.ts` and `.script/upload.ts` support compiled packaging and upload workflows.
 - `log/` contains generated error logs and should not contain application code.

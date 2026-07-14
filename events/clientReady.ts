@@ -1,14 +1,12 @@
-import { Events, Client } from 'discord.js';
+import { Events } from 'discord.js';
+import type { Client } from 'discord.js';
 import { color } from 'console-log-colors';
-import logger from '../function/log.js';
+import logger from '@function/log.js';
 
 export default {
     name: Events.ClientReady,
     once: true,
-    /**
-     * @param {Client} client
-     */
-    execute: async function (client) {
+    execute: async function (client: Client<true>) {
         const guildID = process.env.GUILDID;
         if (guildID === undefined) {
             logger.warn("GUILDID is not set in .env file");
@@ -22,7 +20,8 @@ export default {
         }
 
         const memberCount = guild.memberCount;
-        const login_string = `${color.green('Login Bot : ')} ${color.yellow(client.user?.tag)}  ║  ${color.green('BotID :')} ${color.yellow(process.env.CLIENTID)}  ║  ${color.green('Server :')} ${color.yellow(guild.name)}  ║  ${color.green('Server Member :')} ${color.yellow(memberCount)}`;
+        const login_string = `${color.green('Login Bot : ')} ${color.yellow(client.user?.tag)}  `
+         + `║  ${color.green('BotID :')} ${color.yellow(process.env.CLIENTID)}  ║  ${color.green('Server :')} ${color.yellow(guild.name)}  ║  ${color.green('Server Member :')} ${color.yellow(memberCount)}`;
         logger.section(login_string);
     },
-}
+};

@@ -1,10 +1,7 @@
 /**
  * Formats a date into a string with the format "YYYY-MM-DD_HH-MM-SS".
- * @param {Date | null} [date=null]
- * @returns {string}
  */
-export function formatDate(date = null) {
-    if (!date) date = new Date();
+export function formatDate(date: Date = new Date()): string {
 
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -18,10 +15,8 @@ export function formatDate(date = null) {
 
 /**
  * Formats uptime data into a human-readable string.
- * @param {string} data
- * @returns {string}
  */
-export function uptimeFormat(data) {
+export function uptimeFormat(data: string): string {
     const match = data.match(/(\d+)d(\d+)h(\d+)m(\d+)s/);
     if (!match) return '無法解析';
     const days = match[1] ? parseInt(match[1], 10) : 0;
@@ -31,20 +26,13 @@ export function uptimeFormat(data) {
     return `${days} 天 ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒`;
 };
 
-/**
- * @param {number | null} [date=null]
- * @returns {number}
- */
-export function unixTimeStamp(date = null) {
-    if (!date) date = Date.now();
+export function unixTimeStamp(date: number = Date.now()): number {
     return Math.floor(date / 1000);
 };
 
 /**
  * Sleeps for a specified amount of time.
- * @param {number} millsec
- * @returns {Promise<void>}
  */
-export async function sleep(millsec) {
+export async function sleep(millsec: number): Promise<void> {
     return new Promise(sov => setTimeout(sov, millsec));
 };
