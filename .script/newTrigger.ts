@@ -7,7 +7,7 @@ const { Input, Select } = enquirer;
 type TriggerType = 'button' | 'modal' | 'select';
 
 const triggerTypes: TriggerType[] = ['button', 'modal', 'select'];
-const namePattern = /^[a-z0-9_-]{1,64}$/;
+const namePattern = /^[A-Za-z0-9_-]{1,64}$/;
 
 const interactionTypes: Record<TriggerType, string> = {
     button: 'ButtonInteraction',
@@ -18,7 +18,7 @@ const interactionTypes: Record<TriggerType, string> = {
 function requiredName(value: string): boolean | string {
     return namePattern.test(value.trim())
         ? true
-        : 'Use 1-64 lowercase letters, numbers, hyphens, or underscores.';
+        : 'Use 1-64 letters, numbers, hyphens, or underscores.';
 }
 
 async function input(message: string, validate = requiredName): Promise<string> {
@@ -52,7 +52,7 @@ function triggerTemplate(type: TriggerType, customId: string): string {
 
     return `import { MessageFlags } from 'discord.js';
 import type { ${interactionType} } from 'discord.js';
-import type MyClient from '../../utils/myClient.js';
+import type MyClient from '@utils/myClient';
 
 export default {
     customId: '${customId}',

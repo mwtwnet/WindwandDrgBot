@@ -10,7 +10,7 @@ import type {
     SlashCommandSubcommandGroupBuilder,
 } from 'discord.js';
 import dotenv from 'dotenv';
-import { isModuleFile, moduleIndexFile } from '../function/modules.js';
+import { isModuleFile, moduleIndexFile } from '@function/modules';
 
 dotenv.config();
 

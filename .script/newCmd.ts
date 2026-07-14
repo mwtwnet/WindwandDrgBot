@@ -43,7 +43,7 @@ function escapeText(value: string): string {
 function directCommandTemplate(name: string, description: string): string {
     return `import { EmbedBuilder, MessageFlags, SlashCommandBuilder } from 'discord.js';
 import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
-import type MyClient from '../../utils/myClient.js';
+import type MyClient from '@utils/myClient';
 
 export default {
     data: new SlashCommandBuilder()
@@ -63,7 +63,7 @@ export default {
 function rootCommandTemplate(name: string, description: string): string {
     return `import { SlashCommandBuilder } from 'discord.js';
 import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
-import type MyClient from '../../../utils/myClient.js';
+import type MyClient from '@utils/myClient';
 
 interface SubcommandOptions {
     getSubcommand(): string;
@@ -95,11 +95,10 @@ export default {
 `;
 }
 
-function subcommandTemplate(name: string, description: string, clientImportDepth: number): string {
-    const clientPath = '../'.repeat(clientImportDepth) + 'utils/myClient.js';
+function subcommandTemplate(name: string, description: string): string {
     return `import { SlashCommandSubcommandBuilder } from 'discord.js';
 import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
-import type MyClient from '${clientPath}';
+import type MyClient from '@utils/myClient';
 
 export default {
     data: new SlashCommandSubcommandBuilder()
@@ -169,7 +168,7 @@ async function main(): Promise<void> {
     if (mode === 'subcommand') {
         const name = await input('Subcommand name', commandNameValidator);
         const description = await input('Subcommand description');
-        writeNewFile(join(rootPath, `${name}.ts`), subcommandTemplate(name, description, 3));
+        writeNewFile(join(rootPath, `${name}.ts`), subcommandTemplate(name, description));
         return;
     }
 
@@ -188,7 +187,7 @@ async function main(): Promise<void> {
 
     const name = await input('Grouped subcommand name', commandNameValidator);
     const description = await input('Grouped subcommand description');
-    writeNewFile(join(rootPath, `[${groupName}]`, `${name}.ts`), subcommandTemplate(name, description, 4));
+    writeNewFile(join(rootPath, `[${groupName}]`, `${name}.ts`), subcommandTemplate(name, description));
 }
 
 void main().catch((error: unknown) => {
