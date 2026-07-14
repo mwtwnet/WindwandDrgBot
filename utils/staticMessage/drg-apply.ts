@@ -44,9 +44,12 @@ export async function drgApplySet(message: Message) {
             await sleep(3000);
             await msg.delete();
         });
+        return null;
     });
 
-    if (!applyChannel?.isSendable()) {
+    if (!applyChannel) return;
+
+    if (!applyChannel.isSendable()) {
         return await message.reply('> 設定的申請頻道無法傳送訊息，請確認頻道 ID 與機器人權限。').then(async msg => {
             await sleep(3000);
             await msg.delete();
