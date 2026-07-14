@@ -1,10 +1,9 @@
 import { EmbedBuilder, Events, GuildMemberRoleManager, MessageFlags } from 'discord.js';
 import type { Interaction } from 'discord.js';
-import config from '@root/config.json' with { type: 'json' };
+import { Role } from '@function/data';
 import logger from '@function/log';
 import type MyClient from '@utils/myClient';
 
-const { Role } = config;
 export default {
     name: Events.InteractionCreate,
 

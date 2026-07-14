@@ -1,12 +1,8 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 import type { BaseMessageOptions, Message } from 'discord.js';
 
+import { Channel, Apply } from '@function/data';
 import { sleep } from '@function/time';
-import lang from '@root/lang.json' with { type: 'json' };
-import config from '@root/config.json' with { type: 'json' };
-
-const { Apply } = lang;
-const { Channel } = config;
 
 export async function drgApplySet(message: Message) {
 

@@ -1,11 +1,8 @@
 import { Events } from 'discord.js';
 import type { Message } from 'discord.js';
+import { Role } from '@function/data';
 import { drgApplySet } from '@utils/apply/message';
 import type MyClient from '@utils/myClient';
-
-import config from '@root/config.json' with { type: 'json' };
-
-const { Role } = config;
 
 export default {
     name: Events.MessageCreate,
