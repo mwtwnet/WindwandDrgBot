@@ -9,7 +9,7 @@
     "build": "prisma generate && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "typecheck": "prisma generate && tsc -p tsconfig.json --noEmit",
     "start": "node dist/index.js",
-    "dev": "tsx watch index.ts",
+    "dev": "tsx watch --exclude config.json index.ts",
     "zip": "pnpm build && tsx .script/zip.ts",
     "upload": "tsx .script/upload.ts",
     "dp": "tsx .script/deploy.ts",
