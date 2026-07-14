@@ -1,7 +1,5 @@
 /**
  * Formats a date into a string with the format "YYYY-MM-DD_HH-MM-SS".
- * @param {Date | null} [date=null]
- * @returns {string}
  */
 export function formatDate(date: Date = new Date()): string {
 
@@ -17,8 +15,6 @@ export function formatDate(date: Date = new Date()): string {
 
 /**
  * Formats uptime data into a human-readable string.
- * @param {string} data
- * @returns {string}
  */
 export function uptimeFormat(data: string): string {
     const match = data.match(/(\d+)d(\d+)h(\d+)m(\d+)s/);
@@ -30,18 +26,12 @@ export function uptimeFormat(data: string): string {
     return `${days} 天 ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒`;
 };
 
-/**
- * @param {number | null} [date=null]
- * @returns {number}
- */
 export function unixTimeStamp(date: number = Date.now()): number {
     return Math.floor(date / 1000);
 };
 
 /**
  * Sleeps for a specified amount of time.
- * @param {number} millsec
- * @returns {Promise<void>}
  */
 export async function sleep(millsec: number): Promise<void> {
     return new Promise(sov => setTimeout(sov, millsec));

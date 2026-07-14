@@ -3,17 +3,12 @@ import type { Message } from 'discord.js';
 import { drgApplySet } from './staticMessage/drg-apply.js';
 import type MyClient from './myClient.js';
 
-import config from '#root/config.json' with { type: 'json' };
+import config from '@root/config.json' with { type: 'json' };
 
 const { Role } = config;
 
 export default {
     name: Events.MessageCreate,
-
-    /**
-     * @param {import('discord.js').Message} message 
-     * @param {import('discord.js').Client} client 
-     */
 
     async execute(message: Message, _client: MyClient) {
         // Admin can call command like [<command> <args>]

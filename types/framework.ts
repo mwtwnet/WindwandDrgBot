@@ -7,7 +7,7 @@ import type {
     SlashCommandBuilder,
     SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js';
-import type MyClient from '../utils/myClient.js';
+import type MyClient from '@utils/myClient.js';
 
 export interface BotCommand {
     data: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
@@ -29,4 +29,10 @@ export interface BotTrigger {
 export interface LoadedTrigger {
     trigger: BotTrigger;
     admin: boolean;
+}
+
+export interface BotEvent {
+    name: string;
+    once?: boolean;
+    execute(...args: unknown[]): unknown;
 }

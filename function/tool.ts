@@ -1,7 +1,5 @@
 /**
  * Generates a UUID based on the provided format. The format string should contain 'x' where random characters should be inserted.
- * @param {string[]} format
- * @returns {string}
  */
 export function uuid(format: string[]): string {
     const availChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -19,8 +17,6 @@ export function uuid(format: string[]): string {
 
 /**
  * Formats a given size in bytes into a human-readable string with appropriate units.
- * @param {number} bytes
- * @returns {string}
  */
 export function sizeFormat(bytes: number): string {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];

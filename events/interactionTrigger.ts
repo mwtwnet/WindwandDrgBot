@@ -1,8 +1,7 @@
 import { EmbedBuilder, Events, MessageFlags } from 'discord.js';
 import type { Interaction } from 'discord.js';
-import logger from '../function/log.js';
-import { loadTriggers } from '../function/triggers.js';
-import type MyClient from '../utils/myClient.js';
+import logger from '@function/log.js';
+import type MyClient from '@utils/myClient.js';
 
 export default {
     name: Events.InteractionCreate,
@@ -11,7 +10,7 @@ export default {
         if (!interaction.isButton() && !interaction.isModalSubmit()) return;
         if (interaction.customId.startsWith('page:')) return;
 
-        const loaded = (await loadTriggers())[interaction.customId];
+        const loaded = client.triggers.get(interaction.customId);
         if (!loaded) return;
 
         try {

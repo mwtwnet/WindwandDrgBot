@@ -1,8 +1,7 @@
 import { EmbedBuilder, Events, MessageFlags } from 'discord.js';
 import type { Interaction } from 'discord.js';
-import logger from '../function/log.js';
-import { loadTriggers } from '../function/triggers.js';
-import type MyClient from '../utils/myClient.js';
+import logger from '@function/log.js';
+import type MyClient from '@utils/myClient.js';
 
 export default {
     name: Events.InteractionCreate,
@@ -16,7 +15,7 @@ export default {
 
         const page = Number.parseInt(pageText, 10);
         const customId = interaction.customId.replace(/^page:(\d+)_/, 'page_');
-        const loaded = (await loadTriggers())[customId];
+        const loaded = client.triggers.get(customId);
         if (!loaded) return;
 
         try {

@@ -1,9 +1,9 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 import type { BaseMessageOptions, Message } from 'discord.js';
 
-import { sleep } from '#root/function/time.js';
-import lang from '#root/lang.json' with { type: 'json' };
-import config from '#root/config.json' with { type: 'json' };
+import { sleep } from '@function/time.js';
+import lang from '@root/lang.json' with { type: 'json' };
+import config from '@root/config.json' with { type: 'json' };
 
 const { Apply } = lang;
 const { Channel } = config;

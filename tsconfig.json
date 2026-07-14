@@ -20,9 +20,12 @@
         "forceConsistentCasingInFileNames": true,
         "sourceMap": true,
         "noEmitOnError": true,
-        "baseUrl": ".",
         "paths": {
-            "#root/*": ["./*"]
+            "@root/*": ["./*"],
+            "@function/*": ["./function/*"],
+            "@utils/*": ["./utils/*"],
+            "@framework/*": ["./types/*"],
+            "@generated/*": ["./generated/*"]
         },
         "types": ["node"]
     },

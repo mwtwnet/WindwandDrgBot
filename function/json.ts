@@ -13,8 +13,6 @@ function readJson(fileName: string, name: string): unknown | false {
 
 /**
  * Write config
- * @param {string} name
- * @param {any} value
  */
 export function writeConfig(name: string, value: unknown): void {
     writeJson('./config.json', name, value);
@@ -22,8 +20,6 @@ export function writeConfig(name: string, value: unknown): void {
 
 /**
  * Read config
- * @param {string} name
- * @returns {any}
  */
 export function readConfig(name: string): unknown | false {
     return readJson('./config.json', name);
@@ -31,8 +27,6 @@ export function readConfig(name: string): unknown | false {
 
 /**
  * Write language text
- * @param {string} name
- * @param {any} value
  */
 export function writeLang(name: string, value: unknown): void {
     writeJson('./lang.json', name, value);
@@ -40,8 +34,6 @@ export function writeLang(name: string, value: unknown): void {
 
 /**
  * Read language text
- * @param {string} name
- * @returns {any}
  */
 export function readLang(name: string): unknown | false {
     return readJson('./lang.json', name);
