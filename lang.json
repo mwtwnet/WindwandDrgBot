@@ -10,27 +10,33 @@
         },
 
         "Questions": {
+            "Title": "生電龍社群申請表",
+            "Description": "本分表單的設計在毫無 Minecraft 的經驗下是可以通過的，審核玩家的目的並不是要考驗玩家的 Minecraft 技能，而是要了解玩家對於 Minecraft 的想法與態度，並且希望能夠透過這些資訊來了解玩家的個性與價值觀，打造持久的遊戲社群",
+            "PartTwoDescription": "在這個階段將考驗玩家對於 Minecraft 的技術能力與熟悉程度，這部分將用於辨別玩家在 Minecraft 中的技術能力與熟悉程度",
             "ZoneI": {
+                "Title": "基本資料 - 0%",
+                "Description": "請填寫以下基本資料，這些資訊將會用於審核申請，這部分不考量於審核分數。",
                 "Questions": {
                     "Id": "你的 Minecraft ID",
                     "Age": "你的年齡：請填國小、國中、高中、其他以上",
                     "Playtime": "你的 Minecraft 遊玩時數",
                     "Category": "分享最常玩的遊戲類型",
-                    "Server": "分享你玩過的伺服器",
-                    "OtherGames": "分享其他也有在玩的遊戲"
+                    "Server": "分享你玩過的伺服器"
                 }
             },
             "ZoneII": {
+                "Title": "社群觀點 - 50%",
+                "Description": "這個區塊將用於評估你對於 Minecraft 社群的觀點與想法，請盡量以文字表達你的想法。想法不需要很華麗，有時候越真實的感受是最有價值的。",
                 "Questions": {
                     "ImpactToPlayer": "Minecraft 對你有什麼影響？",
                     "ImpactToSociality": "在你看來，Minecraft 對社交性有什麼影響？",
                     "IdealCommunity": "延續上題，你心目中理想的 Minecraft 社群是什麼樣子？",
                     "TeachUs": "在你看來，Minecraft 能教會我們什麼？",
-                    "Experience": "請簡短分享你在 Minecraft 的經驗，建議字數 50 字以上。(如審核通過將公開此資訊)",
-                    "AdditionalInfo": "其他補充資訊"
-                }
+                    "Experience": "請簡短分享你在 Minecraft 的經驗，建議字數 50 字以上。(如審核通過將公開此資訊)"                }
             },
             "ZoneIII": {
+                "Title": "基礎能力 - 20%",
+                "Description": "這個區塊將用於評估你對於 Minecraft 的基礎能力，這部分將用於辨別你在 Minecraft 中的熟悉程度與能力。",
                 "Questions": {
                     "ModUsage": {
                         "Title": "是否使用過以下 Mod",
@@ -43,13 +49,17 @@
                         ]
                     },
                     "UnreasonableSituation": "若遇到不合理的狀況，且無法自行修復時你會怎麼做？",
-                    "MissingBlueprintItems": "如果發現缺少藍圖中的物品，你會怎麼做？",
                     "TakingNonPublicItems": "再拿取非公開物資時，你會做甚麼？",
                     "ProjectPreparation": "若有一項正在計畫的工程，你應該如何準備以及開始？",
                     "ClearUnderstanding": "你是否能夠清楚知道自己在做什麼，而不是盲目使用藍圖？"
                 }
             },
             "ZoneIV": {
+                "Title": "遊戲能力 - 20%",
+                "Description": "這個區塊將用於評估你對於 Minecraft 的技術能力，這部分將用於辨別你在 Minecraft 中的技術能力與熟悉程度。",
+                "Questions": {
+                    "PlayerType": "請選擇你想要申請的玩家類型"
+                },
                 "Category": {
                     "GameMechanics": "遊戲機制：生產型系統、儲存與物流系統、生物與 AI 機制、時序與控制系統、機器檢修、原始碼等",
                     "BuildingAndArt": "建築美觀：地形、指令應用、建築模組、方塊應用、3D建模",
@@ -58,8 +68,10 @@
                 }
             },
             "ZoneV": {
+                "Title": "誠信印章 - 10%",
+                "Description": "過程中可以用 Google 及 AI 輔助搜尋，但是我們不希望玩家只會使用 AI 來複製貼上回答問題，我們認為更重要的是透過工具來學習。",
                 "Questions": {
-                    "Honesty": "所有資訊皆無 AI 參與並屬實？"
+                    "Honesty": "以上所填資訊是否都已理解並且誠實填寫？"
                 }
             }
         }

@@ -7,7 +7,7 @@ export default {
     name: Events.InteractionCreate,
 
     async execute(interaction: Interaction, client: MyClient): Promise<void> {
-        if (!interaction.isButton() && !interaction.isModalSubmit()) return;
+        if (!interaction.isButton() && !interaction.isModalSubmit() && !interaction.isStringSelectMenu()) return;
         if (interaction.customId.startsWith('page:')) return;
 
         const loaded = client.triggers.get(interaction.customId);

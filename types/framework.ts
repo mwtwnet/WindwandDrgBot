@@ -6,6 +6,7 @@ import type {
     ModalSubmitInteraction,
     SlashCommandBuilder,
     SlashCommandSubcommandsOnlyBuilder,
+    StringSelectMenuInteraction,
 } from 'discord.js';
 import type MyClient from '@utils/myClient';
 
@@ -19,7 +20,7 @@ export interface BotCommand {
 
 export type CommandCollection = Collection<string, BotCommand>;
 
-export type ComponentInteraction = ButtonInteraction | ModalSubmitInteraction;
+export type ComponentInteraction = ButtonInteraction | ModalSubmitInteraction | StringSelectMenuInteraction;
 
 export interface BotTrigger {
     customId: string;

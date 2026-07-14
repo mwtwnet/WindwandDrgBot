@@ -1,5 +1,16 @@
 {
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.preferences.importModuleSpecifierEnding": "js"
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifierEnding": "minimal",
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "typescript.suggest.enabled": true,
+    "typescript.suggest.autoImports": true,
+    "typescript.suggest.completeFunctionCalls": true,
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "off"
+    }
 }

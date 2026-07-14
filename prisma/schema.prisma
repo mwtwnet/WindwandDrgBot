@@ -42,6 +42,7 @@ model Options {
 }
 
 model Player {
-  id   Int    @id @default(autoincrement())
-  name String
+  id   String    @unique
+  gameName String
+  applyData Json
 }
