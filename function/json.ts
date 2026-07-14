@@ -19,7 +19,7 @@ function isJsonObject(value: unknown): value is JsonObject {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-export function writeJson(fileName: string, path: string, value: unknown): void {
+function writeJson(fileName: string, path: string, value: unknown): void {
     const file = JSON.parse(fs.readFileSync(fileName, 'utf-8')) as Record<string, unknown>;
     const segments = pathSegments(path);
     const finalSegment = segments.pop();
@@ -45,7 +45,7 @@ export function writeJson(fileName: string, path: string, value: unknown): void 
     fs.writeFileSync(fileName, JSON.stringify(file, null, 4), 'utf-8');
 }
 
-export function readJson(fileName: string, path: string): unknown | false {
+function readJson(fileName: string, path: string): unknown | false {
     const file = JSON.parse(fs.readFileSync(fileName, 'utf-8')) as Record<string, unknown>;
     let current: unknown = file;
 
