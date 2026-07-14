@@ -9,7 +9,7 @@ function requireEnv(name: string): string {
 
 const adapter = new PrismaMariaDb({
     host: requireEnv('DATABASE_HOST'),
-    port: parseInt(process.env.DATABASE_PORT || '3306'),
+    port: parseInt(process.env.DATABASE_PORT || '3306', 10),
     user: requireEnv('DATABASE_USER'),
     password: requireEnv('DATABASE_PASSWORD'),
     database: requireEnv('DATABASE_NAME'),
